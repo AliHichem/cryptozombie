@@ -41,10 +41,13 @@
  * https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/
  */
 
-// require('dotenv').config();
-// const { MNEMONIC, PROJECT_ID } = process.env;
+require('dotenv').config();
+const { MNEMONIC, PROJECT_ID, INFURAKEY } = process.env;
 
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const infuraKey = INFURAKEY; // you should register at https://app.infura.io to get a key
+const mnemonic = MNEMONIC;
 
 module.exports = {
   /**
@@ -96,6 +99,34 @@ module.exports = {
     //   network_id: 2111,   // This network is yours, in the cloud.
     //   production: true    // Treats this network as if it was a public net. (default: false)
     // }
+    // Configuration for mainnet
+    mainnet: {
+      provider: function () {
+        // Setting the provider with the Infura Mainnet address and Token
+        return new HDWalletProvider(mnemonic, `https://eth-mainnet.g.alchemy.com/v2/PelMYEfj-VSJ3dJytsISSY9oaBBlNzfZ`)
+      },
+      network_id: "1"
+    },
+    // // Configuration for rinkeby network
+    // goerli: {
+    //   // Special function to setup the provider
+    //   provider: function () {
+    //     // Setting the provider with the Infura Rinkeby address and Token
+    //       return new HDWalletProvider(mnemonic, `https://goerli.infura.io/v3/${infuraKey}`)
+    //   },
+    //   // Network id is 4 for Rinkeby
+    //   network_id: 5
+    // }
+    // Configuration for goerli network
+    goerli: {
+      // Special function to setup the provider
+      provider: function () {
+        // Setting the provider with the Infura Rinkeby address and Token
+          return new HDWalletProvider(mnemonic, `https://eth-goerli.g.alchemy.com/v2/j4NkQDe0dGZQNFw8Q4muyUrUjEgFn7dx`)
+      },
+      // Network id is 5 for goerli
+      network_id: 5
+    }
   },
 
   // Set default mocha options here, use special reporters, etc.

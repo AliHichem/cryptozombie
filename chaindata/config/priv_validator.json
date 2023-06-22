@@ -1,0 +1,14 @@
+{
+  "address": "CD40EF601256A80D21105E1D7AC9B860F5647670",
+  "pub_key": {
+    "type": "tendermint/PubKeyEd25519",
+    "value": "OEjoBKBwPbt8i7qEBiLLKDz2EqsIfNbfbLVUECbE9VY="
+  },
+  "last_height": "0",
+  "last_round": "0",
+  "last_step": 0,
+  "priv_key": {
+    "type": "tendermint/PrivKeyEd25519",
+    "value": "rTjwstfYw4VIcavrR8g2ZQOzyRSnOw/MTNSHM6qD3yU4SOgEoHA9u3yLuoQGIssoPPYSqwh81t9stVQQJsT1Vg=="
+  }
+}

@@ -2,6 +2,7 @@
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.1.11",
     "dotenv": "^16.0.3",
+    "loom-truffle-provider": "^0.13.0",
     "truffle-hdwallet-provider": "^1.0.17"
   }
 }

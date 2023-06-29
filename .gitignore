@@ -54,3 +54,6 @@ Thumbs.db
 *.mov
 *.wmv
 
+# blockchain private keys
+mainnet_private_key
+private_key

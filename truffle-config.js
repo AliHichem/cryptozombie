@@ -43,6 +43,9 @@
 
 require('dotenv').config();
 const {MNEMONIC, PROJECT_ID, INFURAKEY, LOOM_PRIVATE_KEY} = process.env;
+const { readFileSync } = require('fs');
+const path = require('path');
+const { join } = require('path');
 
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
 const HDWalletProvider = require('@truffle/hdwallet-provider');
@@ -51,6 +54,11 @@ const LoomTruffleProvider = require('loom-truffle-provider');
 const infuraKey = INFURAKEY; // you should register at https://app.infura.io to get a key
 const mnemonic = MNEMONIC;
 const loomPrivateKey = LOOM_PRIVATE_KEY;
+
+function getLoomProviderWithPrivateKey (privateKeyPath, chainId, writeUrl, readUrl) {
+    const privateKey = readFileSync(privateKeyPath, 'utf-8');
+    return new LoomTruffleProvider(chainId, writeUrl, readUrl, privateKey);
+}
 
 module.exports = {
     /**
@@ -102,6 +110,17 @@ module.exports = {
         //   network_id: 2111,   // This network is yours, in the cloud.
         //   production: true    // Treats this network as if it was a public net. (default: false)
         // }
+        // Basechain
+        basechain: {
+            provider: function() {
+                const chainId = 'default';
+                const writeUrl = 'http://basechain.dappchains.com/rpc';
+                const readUrl = 'http://basechain.dappchains.com/query';
+                const privateKeyPath = path.join(__dirname, 'mainnet_private_key');
+                return getLoomProviderWithPrivateKey(privateKeyPath, chainId, writeUrl, readUrl);
+            },
+            network_id: '*'
+        },
         // Configuration for mainnet
         mainnet: {
             provider: function () {

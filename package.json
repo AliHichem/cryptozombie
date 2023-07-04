@@ -4,5 +4,8 @@
     "dotenv": "^16.0.3",
     "loom-truffle-provider": "^0.13.0",
     "truffle-hdwallet-provider": "^1.0.17"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7"
   }
 }

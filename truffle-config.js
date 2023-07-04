@@ -149,6 +149,19 @@ module.exports = {
                 return new LoomTruffleProvider(chainId, writeUrl, readUrl, privateKey);
             },
             network_id: '9545242630824'
+        },
+        loom_testnet: {
+            provider: function() {
+                const privateKey = loomPrivateKey;
+                const chainId = 'extdev-plasma-us1';
+                const writeUrl = 'wss://extdev-basechain-us1.dappchains.com/websocket';
+                const readUrl = 'wss://extdev-basechain-us1.dappchains.com/queryws';
+                // TODO: Replace the line below
+                const loomTruffleProvider = new LoomTruffleProvider(chainId, writeUrl, readUrl, privateKey);
+                loomTruffleProvider.createExtraAccountsFromMnemonic(mnemonic, 10);
+                return loomTruffleProvider;
+            },
+            network_id: '9545242630824'
         }
     },
 
